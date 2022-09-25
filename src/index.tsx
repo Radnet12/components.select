@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "focus-visible";
+
 import { App } from "./App";
+
+import "./scss/globals.scss";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

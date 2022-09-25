@@ -1,0 +1,15 @@
+@import "./normalize.scss";
+
+:root {
+  --transition: 0.3s;
+}
+
+.app {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 40rem;
+}
+
+@import "./select.scss";

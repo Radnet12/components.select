@@ -1,0 +1,212 @@
+$radius: 0.4rem;
+$clr-focus-300: hsl(200, 100%, 80%);
+$clr-focus-400: hsl(200, 100%, 50%);
+$clr-option-hover: hsl(200, 99%, 72%);
+$clr-option-selected: hsl(200, 96%, 83%);
+
+.select {
+  position: relative;
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    border: 0.1rem solid #777;
+    border-radius: $radius;
+    padding: 0.6rem;
+    min-height: 3.4rem;
+    transition: border-color var(--transition);
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      pointer-events: none;
+    }
+  }
+
+  &-value {
+    flex-grow: 1;
+
+    &.single {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &.multiple {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+
+      div {
+        display: flex;
+        border: 0.1rem solid #777;
+        border-radius: $radius;
+        max-width: 15rem;
+
+        span {
+          overflow: hidden;
+          padding-top: 0.2rem;
+          padding-bottom: 0.2rem;
+          padding-left: 0.4rem;
+          font-size: 1.2rem;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 0.3rem;
+          border-radius: calc($radius / 2);
+          padding: 0.2rem 0.4rem;
+
+          svg {
+            width: 0.8rem;
+            height: 0.8rem;
+          }
+
+          @media (hover) {
+            transition: background-color var(--transition);
+
+            &:hover {
+              background-color: $clr-focus-300;
+              transition: background-color var(--transition);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  &-clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: $radius;
+    width: 1.8rem;
+    height: 1.8rem;
+    transition: background-color var(--transition);
+
+    // FOCUS STYLES
+    &.focus-visible {
+      outline: none;
+      background-color: $clr-focus-300;
+      transition: background-color var(--transition);
+    }
+
+    @media (hover) {
+      &:hover {
+        background-color: $clr-focus-300;
+        transition: background-color var(--transition);
+      }
+    }
+  }
+
+  &-divider {
+    align-self: stretch;
+    width: 0.1rem;
+    background-color: #777;
+  }
+
+  &-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    transition: transform var(--transition);
+    pointer-events: none;
+  }
+
+  &-dropdown {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.5rem);
+    z-index: 5;
+    border: 0.1rem solid #777;
+    border-radius: $radius;
+    padding: 0.6rem;
+    width: 100%;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(1rem);
+    transition: opacity var(--transition), visibility var(--transition),
+      transform var(--transition);
+    pointer-events: none;
+  }
+
+  &-options {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 20rem;
+  }
+
+  &-option {
+    overflow: hidden;
+    border-radius: 0.4rem;
+    padding: 0.6rem;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: background-color var(--transition);
+
+    &:not(:last-child) {
+      margin-bottom: 0.6rem;
+    }
+
+    &.selected {
+      background-color: $clr-option-selected;
+      transition: background-color var(--transition);
+    }
+
+    &.highlighted {
+      background-color: $clr-option-hover;
+      transition: background-color var(--transition);
+    }
+
+    &.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+  }
+
+  &.opened {
+    .select-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity var(--transition), visibility var(--transition),
+        transform var(--transition);
+      pointer-events: auto;
+    }
+
+    .select-arrow {
+      transform: rotate(180deg);
+      transition: transform var(--transition);
+    }
+  }
+
+  // FOCUS STYLES
+  &.focus-visible {
+    outline: none;
+
+    .select-wrapper {
+      border-color: $clr-focus-400;
+      transition: border-color var(--transition);
+    }
+  }
+}
